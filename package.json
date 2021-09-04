@@ -4,8 +4,8 @@
   "description": "A basic starter repo for creating a Node api.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/index.js",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "dev": "nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
