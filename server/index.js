@@ -1,5 +1,4 @@
 const cors = require('cors')
-const dotenv = require('dotenv');
 const errorHandler = require('errorhandler');
 const express = require('express');
 const passport = require('passport');
@@ -7,11 +6,12 @@ const passport = require('passport');
 const isProduction = process.env.NODE_ENV === 'production';
 
 if (!isProduction) {
-  dotenv.config();
+  require('dotenv').config();
 }
 
 const app = express();
 const APP_PORT = process.env.APP_PORT || 8000;
+const PATH = process.env.APP_PATH ? `/${process.env.APP_PATH}` : '';
 
 const corsOptions = {
   origin: '*'
@@ -31,6 +31,11 @@ if (!isProduction) {
 
 require('./config/passport');
 app.use(require('./routes'));
+
+// We provide a root route just as an example
+app.get(`${PATH}`, (req, res) => {
+  res.send(`<p>Access Denied</p>`);
+});
 
 // start app
 app.listen(APP_PORT, () => {
