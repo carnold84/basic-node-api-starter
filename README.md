@@ -1,6 +1,6 @@
 # Basic Node Api Starter
 
-A basic starter repo for creating a Node api with JWT authentication.
+A basic starter repo for creating a Node api with Mysql database and JWT authentication.
 
 ## Dependencies
 
@@ -37,6 +37,7 @@ When running in development mode a .env file is used. See .env-example file.
 
 ## Default endpoints
 
+### Users
 | Method | Endpoint | Description |
 | ------ | -------- | ----------- |
 | GET | http://localhost:8000/api/users | fetch all users |
@@ -44,6 +45,7 @@ When running in development mode a .env file is used. See .env-example file.
 | POST | http://localhost:8000/api/users/register | create a user |
 | POST | http://localhost:8000/api/users/login | login as a user |
 
+### Todos
 | Method | Endpoint | Description |
 | ------ | -------- | ----------- |
 | GET | http://localhost:8000/api/todos | fetch all todos |
