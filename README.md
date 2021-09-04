@@ -26,6 +26,15 @@ A basic starter repo for creating a Node api with JWT authentication.
 
 When running in development mode a .env file is used.
 
+| Variable | Description | Example |
+| -------- | ----------- | ------- |
+| APP_PATH | Blank unless api is hosted in a sub-folder | my-api (e.g. https://my-site.com/my-api/api) |
+| APP_PORT | Port the app is served from | 3000 |
+| DATABASE_NAME | Mysql database name | my_database |
+| DATABASE_PORT | Port the Mysql database is accessed at | 8889 |
+| DATABASE_USER | Mysql database user name | db_user_1 |
+| DATABASE_PASSWORD | Mysql database password | password123 |
+
 ## Default endpoints
 
 | Method | Endpoint | Description |
