@@ -1,11 +1,44 @@
-Basic Node Api Starter
+# Basic Node Api Starter
 
 A basic starter repo for creating a Node api with JWT authentication.
 
-Dependencies:
-* [Express](http://expressjs.com)
-* [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
-* [mysql2](https://github.com/sidorares/node-mysql2)
-* [passport](http://www.passportjs.org)
-* [passport-jwt](http://www.passportjs.org/packages/passport-jwt/)
-* [sequelize](https://sequelize.org)
+## Dependencies
+
+| Package | Description |
+| ------- | ----------- |
+| [Express](http://expressjs.com) | Provides server routing etc |
+| [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) | Auth using JWT |
+| [mysql2](https://github.com/sidorares/node-mysql2) | Mysql database connector |
+| [passport](http://www.passportjs.org) | Authentication middleware for Node.js |
+| [passport-jwt](http://www.passportjs.org/packages/passport-jwt/) | Use JWT with Passport |
+| [sequelize](https://sequelize.org) | Database ORM |
+
+
+
+## Dev Dependencies
+
+| Package | Description |
+| ------- | ----------- |
+| [Dotenv](https://github.com/motdotla/dotenv) | Use .env files in dev mode |
+| [Nodemon](https://github.com/remy/nodemon/) | Dev server that auto-reloads when files change |
+
+## Environment Variables
+
+When running in development mode a .env file is used.
+
+## Default endpoints
+
+| Method | Endpoint | Description |
+| ------ | -------- | ----------- |
+| GET | http://localhost:8000/api/users | fetch all users |
+| GET | http://localhost:8000/api/users/:id | fetch a specific user |
+| POST | http://localhost:8000/api/users/register | create a user |
+| POST | http://localhost:8000/api/users/login | login as a user |
+
+| Method | Endpoint | Description |
+| ------ | -------- | ----------- |
+| GET | http://localhost:8000/api/todos | fetch all todos |
+| GET | http://localhost:8000/api/todos/:id | fetch a specific todo |
+| POST | http://localhost:8000/api/todos | create a todo |
+| PUT | http://localhost:8000/api/todos/:id | update a specific todo |
+| DELETE | http://localhost:8000/api/todos/:id | delete a specific todo |
