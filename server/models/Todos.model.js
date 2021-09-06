@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const { DataTypes, Sequelize } = require('sequelize');
 
 const database = require('./database');
 
@@ -7,35 +7,46 @@ const Op = Sequelize.Op;
 // create todo model
 const Todo = database.define('todo', {
   done: {
-    type: Sequelize.BOOLEAN,
+    type: DataTypes.BOOLEAN,
+  },
+  id: {
+    allowNull: false,
+    defaultValue: Sequelize.UUIDV4,
+    primaryKey: true,
+    type: DataTypes.UUID,
   },
   text: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
   },
   userId: {
-    type: Sequelize.STRING,
+    type: DataTypes.UUID,
   },
 });
 
 // create table with todo model
 Todo.sync()
   .then(() => console.log('Todo table created successfully'))
-  .catch(err => console.log('oooh, did you enter wrong database credentials?'));
+  .catch((err) =>
+    console.log('oooh, did you enter wrong database credentials?')
+  );
 
 Todo.createTodo = async ({ done, text, userId }) => {
   const todo = await Todo.create({
     done,
     text,
-    userId
+    userId,
   });
 
   return todo;
 };
 
 Todo.updateTodo = async ({ id, userId, ...rest }) => {
-  await Todo.update({ ...rest }, {
-    where: { id, userId },
-  });
+  await Todo.update(
+    { ...rest },
+    {
+      where: { id, userId },
+    }
+  );
   const Todos = await Todo.findAll({
     where: {
       userId,
@@ -48,23 +59,23 @@ Todo.updateTodo = async ({ id, userId, ...rest }) => {
   return Todos[0];
 };
 
-Todo.getTodosByUser = async (userId, {exclude, ids}) => {
+Todo.getTodosByUser = async (userId, { exclude, ids }) => {
   let whereStatement = {
     userId,
   };
 
-  if(exclude) {
+  if (exclude) {
     whereStatement.id = {
       [Op.notIn]: exclude,
     };
   }
 
-  if(ids) {
+  if (ids) {
     whereStatement.id = {
       [Op.in]: ids,
     };
   }
-  
+
   return await Todo.findAll({
     where: whereStatement,
   });
@@ -81,11 +92,14 @@ Todo.getTodo = async ({ id, userId }) => {
 };
 
 Todo.deleteTodo = async ({ id, userId }) => {
+  const todo = await Todo.findOne({
+    where: { id, userId },
+  });
   await Todo.destroy({
     where: { id, userId },
   });
 
-  return id;
+  return todo;
 };
 
 module.exports = Todo;
